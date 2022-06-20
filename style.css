@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&family=Oswald:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+
+*, ::before, ::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: 'Montserrat', sans-serif;
+	
+}
+
+
+.header{
+	
+    background: linear-gradient(180deg, rgba(251,242,242,1) 0%, rgba(240,186,186,1) 100%);
+	
+	
+	width: 100%;
+	height: 45vh;
+	
+	
+}
+
+.container-nav nav{
+	padding : 1rem 7rem 0 7rem;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	background: rgb(251,242,242);
+	justify-content: space-between;
+	top: 0;
+	
+}
+.container-nav nav .profile {
+	display: flex;
+	align-items: center;
+}
+.container-nav nav .profile img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+.container-nav nav .profile h1 {
+	margin-left: 10px;
+	font-size: 1.7rem;
+	font-weight : 100;
+	letter-spacing: 0.05rem;
+	font-family: 'Bebas Neue', cursive;
+	
+}
+.container-nav nav ul {
+	display: flex;
+	list-style-type: none;
+	
+}
+.container-nav nav ul li {
+	margin-left: 100px;
+	cursor: pointer;
+	color: #413B39;
+	font-family: 'Montserrat', sans-serif;
+	font-weight : 600;
+	font-size: 1rem;
+	letter-spacing: 0px;
+	border-bottom: 1px solid #fff;
+}
+.container-nav nav ul li:hover {
+	border-bottom-color: #000;
+}
+
+.container-content {
+	margin-top: 10rem;
+	max-width: 100%;
+	height: 10rem;
+	position: relative;
+	text-align: center;
+	
+}
+	
+.container-content h1 {
+	
+	font-family: 'Bebas Neue', cursive;
+	font-size: 5rem;
+	z-index: 3;
+	position: relative;
+	text-align: center;
+	
+	top : 0%;
+	
+	
+}
+
+.container-content p {
+	line-height: 30px;
+	font-size: 2rem;
+	font-style: italic;
+	color: #464141;
+	font-family: 'Montserrat', sans-serif;
+	padding: 0 0 1em 0;
+	position: relative;
+	text-align: center;
+	
+	z-index: 3;
+	letter-spacing: 0px;
+
+  
+}
+
+
+.blob {
+	
+	width: 50rem;
+	position: relative;
+	z-index: 2;
+	bottom:60%;
+	left: 58%;
+	
+	transform: translate(-50%, -50%);
+}
+
+#blob path{
+	animation: blob 5s linear infinite;
+}
+
+
+
+
+@keyframes blob{
+	0%{
+		d: path("M460.5,314Q426,378,367,403.5Q308,429,247,437.5Q186,446,126.5,414.5Q67,383,45.5,316.5Q24,250,52,188.5Q80,127,131.5,85.5Q183,44,245.5,57.5Q308,71,356,104.5Q404,138,449.5,194Q495,250,460.5,314Z");
+	}
+	25%{
+		d: path("M416.5,302Q393,354,357,412Q321,470,257,447.5Q193,425,150.5,389Q108,353,69.5,301.5Q31,250,44.5,180Q58,110,123.5,86Q189,62,253,53.5Q317,45,374.5,81.5Q432,118,436,184Q440,250,416.5,302Z");
+	}
+	50%{
+		d: path("M438.5,308Q409,366,366,421Q323,476,255,459.5Q187,443,136,406.5Q85,370,63,310Q41,250,72.5,197Q104,144,146,101Q188,58,249,62.5Q310,67,376,88.5Q442,110,455,180Q468,250,438.5,308Z");
+	}
+	100%{
+		d: path("M460.5,314Q426,378,367,403.5Q308,429,247,437.5Q186,446,126.5,414.5Q67,383,45.5,316.5Q24,250,52,188.5Q80,127,131.5,85.5Q183,44,245.5,57.5Q308,71,356,104.5Q404,138,449.5,194Q495,250,460.5,314Z");
+	}
+  }
+
+
+
+
+
+#triangle{
+	width: 100%;
+	position: absolute;
+	top: 44%;
+	margin: 0;
+	padding: 0;
+	
+	
+	
+}
+
+.developer-image {
+	position: absolute;
+	bottom: 270px;
+	margin-left : 10%;
+	width: 30rem;
+	height: 27rem;
+	z-index: 1;
+	
+}
+
+
+
+footer {
+	margin-top: 50%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 10px;
+	background-color: #000;
+	color: white;
+}
+footer .colonne p {
+	font-size: 12px;
+	color: #ccc;
+	cursor: pointer;
+}
+footer .colonne p:hover {
+	color: #fff;
+}
+
+@media (max-width: 1500px) {
+
+    .developer-image {
+		position: absolute;
+		bottom: 320px;
+		margin-left : 10%;
+		width: 25rem;
+		height: 22rem;
+		z-index: 1;
+	}
+
+	.blob {
+	
+		width: 43rem;
+		
+		left: 61%;
+		bottom:44%;
+	}
+}
+
+@media (max-width: 1200px) {
+
+    .developer-image {
+		display: none;
+		
+	}
+}
+
+@media only screen and (min-width: 100px) and (max-width: 450px) {
+
+	.container-content h1 {
+		font-size: 2.5rem;
+	}
+	
+	.container-content p {
+		font-size: 1rem;
+	}
+
+	.blob {
+	
+		width: 22rem;
+		
+		left: 67%;
+		bottom:32%;
+	}
+    
+}
+
+@media only screen and (min-width: 450px) and (max-width: 930px) {
+
+	.container-content h1 {
+		font-size: 4rem;
+	}
+	
+	.container-content p {
+		font-size: 1.5rem;
+	}
+
+	.blob {
+	
+		width: 35rem;
+		
+		left: 65%;
+		bottom:40%;
+	}
+   
+}
