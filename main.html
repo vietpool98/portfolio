@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,14 +7,20 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
+		<script src="https://kit.fontawesome.com/40cd562d52.js" crossorigin="anonymous"></script>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+		
 		<title>
 			Portfolio Mathieu HUYNH
 		</title>
+		
 	</head>
 	<body>
+		 <script src="scriptJs.js" defer></script> 
 		<section class="header">
 
-			<div class="container-nav">
+			   <div class="container-nav">
 
 				<nav>
 					<div class="profile">
@@ -23,14 +30,27 @@
 
 					</div>
 					<ul>
-						<li>ABOUT ME</li>
-						<li>PORTFOLIO</li>
-						<li>CONTACT ME</li>
+							
+						<li>
+							<a href="#about" class="nav-item">
+								<i class="fa-solid fa-user-secret nav-item-logo" ></i>
+							ABOUT ME</a>
+						</li>
+						<li>
+							<a href="#portfolio" class="nav-item">
+								<i class="fa-solid fa-address-card nav-item-logo"></i>
+							PORTFOLIO</a>
+						</li>
+						<li>
+							<a href="#contact" class="nav-item">
+								<i class="fa-solid fa-comment-dots nav-item-logo"></i>
+							CONTACT ME</a>
+						</li>
 						
 					</ul>
 				</nav>
 
-			</div>		
+			</div>		 
 			
 
 			<div class="container-content">
@@ -39,56 +59,186 @@
 
 				<h1>Hi, I'm Mathieu</h1>
 				<p>Front-end developer</p>
-				
-				<div class="blob">
 
-					<svg viewBox="0 0 850 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blob">
-  
-						<defs>
-						  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-							<stop offset="0%" style="stop-color: rgb(196, 224, 229);"></stop>
-							<stop offset="100%" style="stop-color: rgb(76, 161, 175);"></stop>
-						  </linearGradient>
-						</defs>
-						<path class="bloby" d="M460.5,314Q426,378,367,403.5Q308,429,247,437.5Q186,446,126.5,414.5Q67,383,45.5,316.5Q24,250,52,188.5Q80,127,131.5,85.5Q183,44,245.5,57.5Q308,71,356,104.5Q404,138,449.5,194Q495,250,460.5,314Z" fill="url(#gradient)"></path>
-					  
-					</svg>
+				<div class="buttonContact">
+					 <a href="#contact" class="btn-contact">
+						<span>Contact Me</span> 
+					</a> 
 				</div>
+				
+				<div class="blob"></div>
 
-			</div>
-
+		    </div> 
 			
-			<img src="fond-triangle.svg"  id="triangle">
-			<img src="developer.png"  class="developer-image">
+		    <div class="container-triangle">
+				<img src="img/fond-circle.svg"  class="fond-triangle">
+				
+			</div> 
 			
 
 		</section>
 
 		
-		<!--<section class="header-bottom">
-			<img src="fond-triangle.svg"  class="fond-triangle">
-			<img src="developer.png"  class="developer-image">
-		</section>-->
-		
+		<section class="header-bottom">
+			<div class="container-scroll">
+				<div class="division-curve"></div>
+			</div>
+			<div class="content">
+				<h1>SCROLL DOWN</h1>
+			</div>
+			<div class="souris">
 
-		<footer>
-			<div class="colonne">
-				<h3>Mes services</h3>
-				<p>Développement de projet IA</p>
-				<p>Prestation en IA</p>
-				<p>Investissement en entreprises IA</p>
 			</div>
-			<div class="colonne">
-				<h3>Mon entreprise</h3>
-				<p>Équipe constituée de 20k ingénieurs</p>
-				<p>Une communauté active mondiale</p>
-				<p>Une entreprise à but lucratif</p>
+		</section>
+
+		<section class="header-content">
+
+			<div class="aboutme" id="about">
+				<img src="img/welcomingBlue.svg" class="welcomeImage" >
+				<div class="titre">ABOUT ME.</div>
+				<div class="contentAbout">
+			       "I am a graduated engineer in computer sciences. Since more than 3 years, I have been hired as an apprentice in the companiy :
+				   <b>Bertrandt</b>. I enjoy coding, it has been a part of my life for few years now."<br>
+				</div>
+				<div class="boutonAbout">
+					<a class="btn-contact"> <span>my resume</span></a>
+				</div>
+				
+				<div class="workedwith">
+					<div class="titleWorked"> Worked with</div>
+					<div class="logos">
+						<img src="img/html.png" class="logo">
+						<img src="img/CSS.png" class="logo">
+						<img src="img/JS.png" class="logo">
+						<img src="img/java.png" class="logo">
+						<img src="img/python.png" class="logo">
+						<img src="img/react.png" class="logo">
+						
+						
+					</div>
+				</div>
 			</div>
-			<div class="colonne">
-				<h3>Mes adresses</h3>
-				<p>artificial@gmail.com</p>
-				<p>intelligence@gmail.com</p>
-				<p>google-science@google.com</p>
+			<div class="portfolio" id="portfolio">
+				<div class="titrePortfolio">PORTFOLIO.</div>
+				<div class="contentCards">
+					<div class="cards">
+						<div class="contentC">
+							<h2>01</h2>
+							<p>React WebApp</p>
+							<a href="#"> Read More</a>
+						</div>
+						
+					</div>
+					<div class="cards">
+						<div class="contentC">
+							<h2>02</h2>
+							<p>IN PROGRESS</p>
+							<a href="#"> Read More</a>
+						</div>
+					</div>
+					<div class="cards">
+						<div class="contentC">
+							<h2>03</h2>
+							<p>IN PROGRESS</p>
+							<a href="#"> Read More</a>
+						</div>
+					</div>
+				</div>
 			</div>
-		</footer>
+			<div class="contact" id="contact">
+				
+				<div class="containerContact">
+					<div class="titleForm">
+						<h2>CONTACT ME.</h2>
+					</div> 
+					<div class="row">
+						<div class="col">
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span class="text">First Name</span>
+								<span class="line"></span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span class="text">Last Name</span>
+								<span class="line"></span>
+							</div>
+						</div>
+						
+					</div>
+	
+					<div class="row">
+						<div class="col">
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span class="text">Email</span>
+								<span class="line"></span>
+							</div>
+						</div>
+						<div class="col">
+							<div class="inputBox">
+								<input type="text" name="" required="required">
+								<span class="text">Mobile</span>
+								<span class="line"></span>
+							</div>
+						</div>
+					</div>
+	
+					<div class="row">
+						<div class="col">
+							<div class="inputBox">
+								<textarea required="required"></textarea>
+								<span class="text">type Your Message Here..</span>
+								<span class="line"></span>
+							</div>
+						</div>
+						
+					</div>
+	
+					<div class="row">
+						<div class="col">
+							<a href="/ESIEE/portfolio_huynh/main.html" class="btn-contact">
+								<span>Send</span> 
+							</a>
+						</div>
+						
+					</div>
+					
+	
+				</div>
+			</div>
+			<footer>
+				<div class="waves">
+					<div class="wave" id="wave1"></div>
+					<div class="wave" id="wave2"></div>
+					<div class="wave" id="wave3"></div>
+				</div>
+				<ul class="social_icon">
+					<li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+					<li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+					<li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+					<li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+				</ul>
+				<ul class="footerLink">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Service</a></li>
+					<li><a href="#">Contact</a></li>
+					
+				</ul>
+				
+					<p>@2022 By Mathieu HUYNH | All Rights Reserved</p>
+				
+					
+				
+				 
+			</footer>
+		</section>
+		
 	</body>
+
+	
+
+</html>
