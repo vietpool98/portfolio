@@ -136,16 +136,17 @@ html{
 	gap:10px;
 }
 	
-.container-content h1 {
+.container-content p:nth-child(1) {
 	
-	font-family: 'Montserrat', sans-serif;
-	font-size: 2.5rem;
+	font-family: 'Bebas Neue', cursive;
+	font-size: 3.8rem;
 	z-index: 3;
 	position: relative;
 	color:rgba(237,224,224,0.5)
+	
 }
 
-.container-content p {
+.container-content p:nth-child(2)  {
 	
 	font-size: 1.8rem;
 	color:rgba(237,224,224,0.5);
@@ -228,14 +229,14 @@ html{
 
 .blob {
 	
-	width: 23em;
+	width: 21em;
 	position: absolute;
 	height: 18em;
 	z-index: 2;
 	background: linear-gradient(rgba(206,207,224,1) 0%, rgba(206,207,224,1) 20%, rgb(74,79,126) 100%); 
 	border-radius: 53% 47% 44% 56% / 40% 69% 31% 60%;
 	top:-50px;
-	animation: blob 10s linear infinite;
+	animation: blob 15s linear infinite;
 	box-shadow: 25px 45px 80px rgba(0, 0, 0, 0.15);
 }
 
