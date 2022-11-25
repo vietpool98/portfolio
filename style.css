@@ -61,7 +61,7 @@ html{
 } 
 
 .container-nav nav{
-	padding : 1rem ;
+	padding : 0rem ;
 	height: 50px;
 	display: flex;
 	align-items: center;
@@ -78,14 +78,17 @@ html{
 	margin-left: 90px;
 }
 .container-nav nav .profile img {
+	position: relative;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	margin-top: 10px;
 }
 .container-nav nav .profile h1 {
 	
 	font-size: 1.7rem;
-	margin-left: 5px;
+	margin-left: 10px;
+	margin-top: 10px;
 	font-weight : 100;
 	letter-spacing: 0.05rem;
 	font-family: 'Bebas Neue', cursive;
@@ -93,15 +96,17 @@ html{
 	
 }
 .container-nav nav ul {
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	list-style-type: none;
 	width: 50%;
-	
+	margin: 10px 10px;
 }
 
 .container-nav nav ul li {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -935,7 +940,7 @@ footer .wave{
 	}
 	.container-nav nav ul {
 		width: 100%;
-		
+		margin: 10px 0;
 	}
 	
 		
@@ -970,7 +975,7 @@ footer .wave{
 		margin: 0.5rem;
 	}
 	.aboutme .titleWorked{
-		height: 40px;
+		height: 50px;
 	}
 	.container-content p:nth-child(1) {
 		font-size: 3rem;
@@ -1043,12 +1048,15 @@ footer .wave{
 	.container-nav{
 		width: 100%;
 	}
-	.container-nav nav ul li {
-		width: 100px;
+
+	
+	.container-nav nav ul  {
+		margin: 10px 0;
 	}
-	.nav-item{
-	   font-size: 0.7rem; 
-   }
+	.container-nav nav ul li {
+		width: 150px;
+	}
+	
 	.division-curve{
 		width: 40%;
 	}
@@ -1121,7 +1129,7 @@ footer .wave{
 		height: 710px;
 	}
 	.nav-item{
-		font-size: 0.6rem; 
+		font-size: 0.8rem; 
 	}
 
 	.container-nav {
@@ -1172,7 +1180,13 @@ footer .wave{
 		right: auto;
 		margin: 10%;
 	}
-
+    
+	.aboutme  .welcomeImage{
+		margin-top:15x;
+		width : 120px;
+		height: 145px;
+		left : 70px;
+	}
 
 	.aboutme .titre{
 		font-size : 2.5rem;
@@ -1192,8 +1206,10 @@ footer .wave{
 	}
 
 	.aboutme .titleWorked{
-		font-size: 0.5rem;
-		margin-top: 1.5rem;
+		font-size: 0.8rem;
+		margin:0;
+		display: flex;
+		align-items: center;
 	}
 	.aboutme .logo{
 		width: 80px;
@@ -1201,6 +1217,11 @@ footer .wave{
 		object-fit: contain;
 		margin: 0.5rem;
 	}
+
+	.aboutme .logos{
+		margin-bottom: 1rem;
+	}
+	
 	.workedwith::after{
 		inset:5px;
 		border-radius: 55px;
