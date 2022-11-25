@@ -974,11 +974,11 @@ footer .wave{
 	.aboutme .titleWorked{
 		height: 40px;
 	}
-	.container-content h1 {
+	.container-content p:nth-child(1) {
 		font-size: 3rem;
 		
 	}
-	.container-content p {
+	.container-content p:nth-child(2) {
 		font-size: 1.2rem;
 		
 	}
@@ -1038,7 +1038,7 @@ footer .wave{
 	}
 	
 
-	.container-content h1 {
+	.container-content p:nth-child(1) {
 		font-size: 3rem;
 		
 	}
@@ -1129,12 +1129,12 @@ footer .wave{
 	.container-nav {
 		padding: 0;
 	}
-	.container-content h1 {
+	.container-content p:nth-child(1) {
 		font-size: 2.5rem;
 		
 	}
 	
-	.container-content p {
+	.container-content p:nth-child(2) {
 		font-size: 1rem;
 		
 	}
