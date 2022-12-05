@@ -92,7 +92,7 @@ html{
 	font-weight : 100;
 	letter-spacing: 0.05rem;
 	font-family: 'Bebas Neue', cursive;
-	
+	color:rgba(0,0,0,0.84);
 	
 }
 .container-nav nav ul {
@@ -149,14 +149,14 @@ html{
 	font-size: 3.8rem;
 	z-index: 3;
 	position: relative;
-	color:rgba(237,224,224,0.5)
+	color:rgba(0,0,0,0.74);
 	
 }
 
 .container-content p:nth-child(2)  {
 	
 	font-size: 1.8rem;
-	color:rgba(237,224,224,0.5);
+	color:rgba(0,0,0,0.44);
 	font-family: 'Bebas Neue', cursive;
 	z-index: 3;
 }
@@ -403,6 +403,10 @@ html{
 	color: #dde0c7;
 }
 
+.aboutme .contentAbout a{
+	text-decoration: none;
+	color: #dde0c7;
+}
 .aboutme .boutonAbout{
 	
 	margin-top: 12rem;
