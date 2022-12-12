@@ -13,10 +13,7 @@ body {
 	width: 100%;
 }
 
-html{
-	scroll-behavior: smooth;
-	
-}
+
 
 .header{
     background: linear-gradient(rgba(237,224,224,1) 0%, rgba(237,224,224,1) 20%, rgba(74,79,126,1) 100%); 
@@ -639,6 +636,23 @@ html{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: row;
+}
+.alertMessage{
+	position: absolute;
+	top :-60px;
+	width: 100%;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.alertMessage p{
+	padding: 10px;
+	background-color: #dde0c7;
+	border-radius: 20%;
+	color: #258f2a;
 }
 .containerContact{
 	position: relative;

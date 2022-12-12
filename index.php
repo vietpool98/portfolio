@@ -1,4 +1,35 @@
+<?php
+					
+if(isset($_POST["sent"])){
+	
 
+		
+	if(isset($_POST["message"]) && $_POST["message"] != "" &&
+		isset($_POST["firstName"]) && $_POST["firstName"] != "" &&
+		isset($_POST["lastName"]) && $_POST["lastName"] != "" &&
+		isset($_POST["email"]) && $_POST["email"] != "" &&
+		isset($_POST["mobile"]) && $_POST["mobile"] != "" )
+	{
+		$info = "message sent !";
+		$headers =  'MIME-Version: 1.0' . "\r\n"; 
+		$headers .= 'From: contact@huynh.info' . "\r\n";
+		$headers .= 'Reply-to: ' . $_POST['email'];
+
+		$sujet = "Ce message vous a été envoyé via la page contact du site mathieu.huynh.info :
+		Prénom =" . $_POST["firstName"] . "
+		Nom =" . $_POST["lastName"] ."
+		Mobile =" . $_POST["mobile"] ."
+		Message =" . $_POST["message"];
+		
+		$retour = mail("mathieuhuynh@gmail.com", "réponse formulaire", $sujet, $headers);
+
+	}
+	else{
+		$info = "message not sent !";
+	}
+}
+
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +44,13 @@
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<title>
-			Portfolio 
+			Mathieu HUYNH 
 		</title>
 		
 	</head>
 	<body>
-		   <script src="scriptJs.js" defer></script> 
+		
+		      <script src="scriptJs.js" defer></script> 
 		      <section class="header">
 
 			 <div class="container-nav">
@@ -98,7 +130,7 @@
 				  <img src="img/welcomingBlue.svg" class="welcomeImage" >
 				<div class="titre">ABOUT ME.</div> 
 				 <div class="contentAbout">
-			       "I am a graduated engineer in computer science. For more than 3 years, I have been hired as an apprentice in the companiy :
+			       "I am a graduated engineer in computer science. For more than 3 years, I have been working as an apprentice in the company :
 				    <b><a href="https://www.bertrandt.com/en/">Bertrandt</a></b>. I enjoy coding, it has been a part of my life for few years now."<br> 
 				</div>
 				  <div class="boutonAbout">
@@ -147,23 +179,28 @@
 				</div>
 			</div>  
 
-			 <div class="contact" id="contact"> 
+			<div class="contact" id="contact"> 
 				
-				<div class="containerContact">
+				<form action="https://mathieu.huynh.info/#contact" class="containerContact" method="post" >
+					 
+					<?php if(isset($info)){?>
+						<div class="alertMessage">
+							<p ><?= $info?></p>
+					</div> <?php }?>
 					<div class="titleForm">
 						<h2>CONTACT ME.</h2>
 					</div> 
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="" required="required">
+								<input type="text" name="firstName" >
 								<span class="text">First Name</span>
 								<span class="line"></span>
 							</div>
 						</div>
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="" required="required">
+								<input type="text" name="lastName">
 								<span class="text">Last Name</span>
 								<span class="line"></span>
 							</div>
@@ -174,14 +211,14 @@
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="" required="required">
+								<input type="text" name="email" >
 								<span class="text">Email</span>
 								<span class="line"></span>
 							</div>
 						</div>
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="" required="required">
+								<input type="text" name="mobile" >
 								<span class="text">Mobile</span>
 								<span class="line"></span>
 							</div>
@@ -191,7 +228,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<textarea required="required"></textarea>
+								<textarea  name="message"></textarea>
 								<span class="text">type Your Message Here..</span>
 								<span class="line"></span>
 							</div>
@@ -201,15 +238,16 @@
 	
 					<div class="row">
 						 <div class="col">
-							 <a href="/ESIEE/portfolio_huynh/main.html" class="btn-contact">
-								<span>Send</span> 
-							</a> 
+							<input class="btn-contact" value="Send" type="submit" name="sent">
 						</div> 
-						
 					</div>
-					
-	
-				</div>
+
+				</form>
+				
+				
+				
+				
+				 
 			</div>  
 
 			 <footer>
