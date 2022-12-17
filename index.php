@@ -157,15 +157,15 @@ if(isset($_POST["sent"])){
 					<div class="cards">
 						<div class="contentC">
 							<h2>01</h2>
-							<p>React WebApp</p>
-							<a href="#"> Read More</a>
+							<p>JS project</p>
+							<a href=/javascript_project/index.html> Read More</a>
 						</div>
 						
 					</div>
 					<div class="cards">
 						<div class="contentC">
 							<h2>02</h2>
-							<p>IN PROGRESS</p>
+							<p>React WebApp</p>
 							<a href="#"> Read More</a>
 						</div>
 					</div>
