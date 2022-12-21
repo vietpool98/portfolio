@@ -22,6 +22,9 @@ Size.innerHTML=size;
 
 var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 var data = imgData.data;
+
+console.log(canvas.width);
+console.log(canvas.width);
 canvas.addEventListener("mouseup" , function(event){
     isPressed = false;
 });
@@ -31,7 +34,7 @@ canvas.addEventListener("mousedown" , function(event){
     isPressed = true;
      x = event.offsetX; // Coordonnée X de la souris dans l'élément
      y = event.offsetY;
-    drawCircle(x,y);
+    //drawCircle(x,y);
     
    
 });
@@ -73,70 +76,78 @@ canvas.addEventListener("mousemove" , function(event){
  
 
   canvas.addEventListener("click", function(event){
+    if(isFilled){
+        
+        var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        var data = imgData.data;
+        console.log("hello");
+        const x = event.offsetX; // Coordonnée X de la souris dans l'élément
+        const y = event.offsetY; // Coordonnée Y de la souris dans l'élément
+        const startPos = (y*canvas.width + x) * 4;
+        var newPos = undefined;
     
-     var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-     var data = imgData.data;
-    console.log("hello");
-     const x = event.offsetX; // Coordonnée X de la souris dans l'élément
-     const y = event.offsetY; // Coordonnée Y de la souris dans l'élément
-     const startPos = (y*canvas.width + x) * 4;
 
-    
+        const startR = data[startPos];
+        const startB = data[startPos+1];
+        const startG = data[startPos+2];
 
-     const startR = data[startPos];
-     const startB = data[startPos+1];
-     const startG = data[startPos+2];
-
-     console.log(startR );
-     console.log(startG);
+        console.log(startR );
+        console.log(startG);
 
 
-     var pixelStack = [[x,y]];
+        var pixelStack = [[x,y]];
+        console.log(pixelStack);
 
-     while(pixelStack.length >= 0){
-         newPos = pixelStack.pop();
-         xPos = newPos[0];
-         yPos = newPos[1];
-         pixelPos = (yPos*canvas.width + xPos) * 4;
+        while(pixelStack.length >= 0){
+            
+            newPos = pixelStack.pop();
+            xPos = newPos[0];
+            yPos = newPos[1];
+            console.log(newPos);
+            pixelPos = (yPos*canvas.width + xPos) * 4;
 
-         while(yPos-- >= 0 && matchStartColor(pixelPos, data, startR, startG, startB)){
-             pixelPos -= canvas.width * 4;
-         }
-         ++yPos;
-         pixelPos += canvas.width * 4;
-         reachLeft = false;
-         reachRight = false;
+            while(yPos-- >= 0 && matchStartColor(pixelPos, data, startR, startG, startB)){
+                pixelPos -= canvas.width * 4;
+                console.log("ok");
+            }
+            ++yPos;
+            pixelPos += canvas.width * 4;
+            reachLeft = false;
+            reachRight = false;
 
-         while(yPos++ < canvas.height-1 && matchStartColor(pixelPos, data, startR, startG, startB)){
-             colorPixel[pixelPos,data];
+            while(yPos++ < canvas.height-1 && matchStartColor(pixelPos, data, startR, startG, startB)){
+                colorPixel[pixelPos,data];
 
-             if(xPos>0){
-                 if(matchStartColor(pixelPos-4, data, startR, startG, startB)){
-                     if(!reachLeft){
-                         pixelStack.push([xPos-1,yPos]);
-                         reachLeft = true;
-                     }
-                 }
-                 else if(reachLeft){
-                     reachLeft = false;
-                 }
-             }
-             if(xPos> canvas.width){
-                 if(matchStartColor(pixelPos+4, data, startR, startG, startB)){
-                     if(!reachRight){
-                         pixelStack.push([xPos+1,yPos]);
-                         reachRight                    }
-                 }
-                 else if(reachRight){
-                     reachRight = false;
-                 }
-             }
+                if(xPos>0){
+                    if(matchStartColor(pixelPos-4, data, startR, startG, startB)){
+                        if(!reachLeft){
+                            pixelStack.push([xPos-1,yPos]);
+                            reachLeft = true;
+                        }
+                    }
+                    else if(reachLeft){
+                        reachLeft = false;
+                    }
+                }
+                if(xPos> canvas.width){
+                    if(matchStartColor(pixelPos+4, data, startR, startG, startB)){
+                        if(!reachRight){
+                            pixelStack.push([xPos+1,yPos]);
+                            reachRight = true;
+                        }
+                    }
+                    else if(reachRight){
+                        reachRight = false;
+                    }
+                }
 
-             pixelPos += canvas.width * 4;
-         }
-     }
-
-        ctx.putImageData(imgData,0,0);
+                pixelPos += canvas.width * 4;
+            }
+        }
+        
+            ctx.putImageData(imgData,0,0);
+    }
+     
     });
 
  
@@ -219,7 +230,7 @@ function redimensionnement() {
         // Il y a de la place
         canvas.width = 300;
         canvas.height = 400;
-        console.log(canvas.width);
+        
       } else {
         // Il y en a moins...
       }
