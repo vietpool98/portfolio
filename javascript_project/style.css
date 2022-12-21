@@ -58,7 +58,7 @@ canvas{
 
 #clear{
     position: relative;
-    left: 245px;
+    left: 185px;
 }
 
 @media (max-width: 440px) {
@@ -77,6 +77,6 @@ canvas{
 
     #clear{
         position: relative;
-        left: 45px;
+        left: 0;
     }
 }
