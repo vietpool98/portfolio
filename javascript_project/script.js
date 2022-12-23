@@ -6,6 +6,8 @@ const ctx = canvas.getContext('2d');
 const color = document.getElementById('color');
 const clear = document.getElementById('clear');
 const fill = document.getElementById('fill');
+const circle = document.getElementById('circle');
+const pen = document.getElementById('pen');
 
 let isPressed = false;
 let isFilled = false;
@@ -25,6 +27,29 @@ var data = imgData.data;
 
 console.log(canvas.width);
 console.log(canvas.width);
+
+
+
+window.addEventListener("mousemove" , function(event){
+    x = event.offsetX; // Coordonnée X de la souris dans l'élément
+     y = event.offsetY;
+    
+    if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
+        isPressed = false;
+    }
+    if(!isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/stylo.svg),default" ;
+    }
+    
+    if(isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/paint.svg),auto" ;
+    }
+    
+    if((x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "cell" ;
+    }
+   
+});
 canvas.addEventListener("mouseup" , function(event){
     isPressed = false;
 });
@@ -34,7 +59,7 @@ canvas.addEventListener("mousedown" , function(event){
     isPressed = true;
      x = event.offsetX; // Coordonnée X de la souris dans l'élément
      y = event.offsetY;
-    //drawCircle(x,y);
+    
     
    
 });
@@ -52,10 +77,15 @@ canvas.addEventListener("mousemove" , function(event){
     }
 });
 
+color.addEventListener("click", function(event){
+    isFilled = false;
+
+ });
+
  buttonDecrease.addEventListener("click", function(event){
     size -= 1;
-     if(size <=2){
-         size = 2;
+     if(size <=1){
+         size = 1;
      }
      updateSize();
  });
@@ -80,7 +110,7 @@ canvas.addEventListener("mousemove" , function(event){
         
         var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         var data = imgData.data;
-        console.log("hello");
+        
         const x = event.offsetX; // Coordonnée X de la souris dans l'élément
         const y = event.offsetY; // Coordonnée Y de la souris dans l'élément
         const startPos = (y*canvas.width + x) * 4;
@@ -91,15 +121,14 @@ canvas.addEventListener("mousemove" , function(event){
         const startB = data[startPos+1];
         const startG = data[startPos+2];
 
-        console.log(startR );
-        console.log(startG);
+       
 
 
         var pixelStack = [[x,y]];
         console.log(pixelStack);
 
-        while(pixelStack.length >= 0){
-            
+        while(pixelStack.length > 0){
+            console.log(pixelStack.length);
             newPos = pixelStack.pop();
             xPos = newPos[0];
             yPos = newPos[1];
@@ -108,7 +137,7 @@ canvas.addEventListener("mousemove" , function(event){
 
             while(yPos-- >= 0 && matchStartColor(pixelPos, data, startR, startG, startB)){
                 pixelPos -= canvas.width * 4;
-                console.log("ok");
+                
             }
             ++yPos;
             pixelPos += canvas.width * 4;
@@ -116,20 +145,25 @@ canvas.addEventListener("mousemove" , function(event){
             reachRight = false;
 
             while(yPos++ < canvas.height-1 && matchStartColor(pixelPos, data, startR, startG, startB)){
-                colorPixel[pixelPos,data];
+                
+                colorPixel(pixelPos,data);
+                
 
                 if(xPos>0){
                     if(matchStartColor(pixelPos-4, data, startR, startG, startB)){
                         if(!reachLeft){
+                            console.log("ok");
                             pixelStack.push([xPos-1,yPos]);
                             reachLeft = true;
                         }
                     }
                     else if(reachLeft){
+                        
                         reachLeft = false;
                     }
                 }
-                if(xPos> canvas.width){
+
+                if(xPos < canvas.width){
                     if(matchStartColor(pixelPos+4, data, startR, startG, startB)){
                         if(!reachRight){
                             pixelStack.push([xPos+1,yPos]);
@@ -147,6 +181,7 @@ canvas.addEventListener("mousemove" , function(event){
         
             ctx.putImageData(imgData,0,0);
     }
+    isFilled = false;
      
     });
 
@@ -217,6 +252,7 @@ function matchStartColor(pixelPos , data , startR, startG, startB){
 }
 
 function colorPixel(pixelPos ,data){
+    
     data[pixelPos] = getColorR(color);
     data[pixelPos+1]= getColorG(color);
     data[pixelPos+2]= getColorB(color);

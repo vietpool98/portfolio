@@ -6,9 +6,17 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 	width: 100%;
-    background-color: rgb(255, 0, 0, 0.1);
+    background-color: rgb(255, 0, 0, 0.3);
+    cursor: cell;
 }
+svg {
+    transform: rotate(90deg);
+  }
 
+  path {
+    transform: rotate(180deg);
+    transform-origin: 50% 50%;
+  }
 .container{
     width: 100%;
     height: 100vh;
@@ -17,6 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
 
 
@@ -25,8 +34,8 @@ canvas{
     height: 500px;
     border: 1px solid black;
     position: relative;
-    border-top-left-radius : 10px;
-    border-top-right-radius : 10px;
+    /* border-top-left-radius : 10px;
+    border-top-right-radius : 10px; */
     background-color: rgb(255, 255, 255);
 }
 
@@ -54,12 +63,16 @@ canvas{
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
+    border-radius: 5px;
 }
 
-#clear{
-    position: relative;
-    left: 185px;
+.toolbox > *:hover{
+
+    background-color: rgba(185, 160, 160);
+    cursor: pointer;
+    
 }
+
 
 @media (max-width: 440px) {
 	canvas{
