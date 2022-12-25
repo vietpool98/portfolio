@@ -50,18 +50,46 @@ window.addEventListener("mousemove" , function(event){
     }
    
 });
+
+window.addEventListener("touchmove" , function(event){
+    x = event.offsetX; // Coordonnée X de la souris dans l'élément
+     y = event.offsetY;
+    
+    if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
+        isPressed = false;
+    }
+    if(!isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/stylo.svg),default" ;
+    }
+    
+    if(isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/paint.svg),auto" ;
+    }
+    
+    if((x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "cell" ;
+    }
+   
+});
 canvas.addEventListener("mouseup" , function(event){
+    isPressed = false;
+});
+
+canvas.addEventListener("touchend" , function(event){
     isPressed = false;
 });
 
 canvas.addEventListener("mousedown" , function(event){
 
     isPressed = true;
-     x = event.offsetX; // Coordonnée X de la souris dans l'élément
-     y = event.offsetY;
     
     
-   
+});
+canvas.addEventListener("touchstart" , function(event){
+
+    isPressed = true;
+    
+    
 });
 
 
@@ -69,7 +97,18 @@ canvas.addEventListener("mousedown" , function(event){
 canvas.addEventListener("mousemove" , function(event){
     const x2 = event.offsetX; // Coordonnée X de la souris dans l'élément
     const y2 = event.offsetY; // Coordonnée Y de la souris dans l'élément
-    if(isPressed == true){
+    if(isPressed == true && isFilled == false){
+        drawCircle(x2,y2);
+        line(x,y,x2,y2);
+        x=x2;
+        y=y2;
+    }
+});
+canvas.addEventListener("touchmove" , function(event){
+    const x2 = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    const y2 = event.touches[0].pageY - event.touches[0].target.offsetTop // Coordonnée Y de la souris dans l'élément
+    console.log(x2);
+    if(isPressed == true && isFilled == false){
         drawCircle(x2,y2);
         line(x,y,x2,y2);
         x=x2;
