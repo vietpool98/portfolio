@@ -97,6 +97,31 @@ window.addEventListener("mousemove" , function(event){
 });
 
 
+window.addEventListener("touchmove" , function(event){
+    x = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    y = event.touches[0].pageY - event.touches[0].target.offsetTop;
+    
+    if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
+        isPressed = false;
+    }
+    if(!isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/stylo.svg),default" ;
+    }
+    
+    if(isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "url(imgJs/paint.svg),auto" ;
+    }
+    
+    if((x < 0 || x > canvas.width || y > canvas.height || y < 0)){
+        document.body.style.cursor = "cell" ;
+    }
+   
+});
+canvas.addEventListener("mouseup" , function(event){
+    isPressed = false;
+});
+
+
 
 canvas.addEventListener("mousedown" , function(event){
     const x2 = event.offsetX; // Coordonnée X de la souris dans l'élément
