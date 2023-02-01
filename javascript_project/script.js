@@ -11,7 +11,7 @@ const pen = document.getElementById('pen');
 
 let isPressed = false;
 let isFilled = false;
-let size = 10;
+let size = 5;
 let x = undefined;
 let y = undefined;
 
@@ -25,24 +25,69 @@ Size.innerHTML=size;
 var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 var data = imgData.data;
 
-console.log(canvas.width);
-console.log(canvas.width);
 
+
+
+
+
+canvas.addEventListener("mouseup" , function(event){
+    isPressed = false;
+});
+
+
+
+//gestion du tactile
+//*********************************************************************************** */
+//*********************************************************************************** */
+
+canvas.addEventListener("touchend" , function(event){
+    isPressed = false;
+});
+canvas.addEventListener("touchstart" , function(event){
+    x = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    y = event.touches[0].pageY - event.touches[0].target.offsetTop // Coordonnée Y de la souris dans l'élément
+    isPressed = true;
+    
+    
+});
+canvas.addEventListener("touchmove" , function(event){
+    const x2 = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    const y2 = event.touches[0].pageY - event.touches[0].target.offsetTop // Coordonnée Y de la souris dans l'élément
+    console.log(x2);
+    if(isPressed == true && isFilled == false){
+        drawCircle(x2,y2);
+        line(x,y,x2,y2);
+        x=x2;
+        y=y2;
+    }
+});
+
+window.addEventListener("touchmove" , function(event){
+    x = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    y = event.touches[0].pageY - event.touches[0].target.offsetTop // Coordonnée Y de la souris dans l'élément
+    
+    
+   
+});
+
+//*********************************************************************************** */
+//*********************************************************************************** */
 
 
 window.addEventListener("mousemove" , function(event){
     x = event.offsetX; // Coordonnée X de la souris dans l'élément
      y = event.offsetY;
+     
     
     if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
         isPressed = false;
     }
     if(!isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
-        document.body.style.cursor = "url(imgJs/stylo.svg),default" ;
+        document.body.style.cursor = "url(imgJs/stylo.svg) 0 45,default" ;
     }
     
     if(isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
-        document.body.style.cursor = "url(imgJs/paint.svg),auto" ;
+        document.body.style.cursor = "url(imgJs/paint.svg) 20 20,auto" ;
     }
     
     if((x < 0 || x > canvas.width || y > canvas.height || y < 0)){
@@ -51,42 +96,15 @@ window.addEventListener("mousemove" , function(event){
    
 });
 
-window.addEventListener("touchmove" , function(event){
-    x = event.offsetX; // Coordonnée X de la souris dans l'élément
-     y = event.offsetY;
-    
-    if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
-        isPressed = false;
-    }
-    if(!isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
-        document.body.style.cursor = "url(imgJs/stylo.svg),default" ;
-    }
-    
-    if(isFilled && !(x < 0 || x > canvas.width || y > canvas.height || y < 0)){
-        document.body.style.cursor = "url(imgJs/paint.svg),auto" ;
-    }
-    
-    if((x < 0 || x > canvas.width || y > canvas.height || y < 0)){
-        document.body.style.cursor = "cell" ;
-    }
-   
-});
-canvas.addEventListener("mouseup" , function(event){
-    isPressed = false;
-});
 
-canvas.addEventListener("touchend" , function(event){
-    isPressed = false;
-});
 
 canvas.addEventListener("mousedown" , function(event){
-
-    isPressed = true;
+    const x2 = event.offsetX; // Coordonnée X de la souris dans l'élément
+    const y2 = event.offsetY; // Coordonnée Y de la souris dans l'élément
+    if (!isFilled){
+        drawCircle(x2,y2);
+    }
     
-    
-});
-canvas.addEventListener("touchstart" , function(event){
-
     isPressed = true;
     
     
@@ -104,17 +122,7 @@ canvas.addEventListener("mousemove" , function(event){
         y=y2;
     }
 });
-canvas.addEventListener("touchmove" , function(event){
-    const x2 = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
-    const y2 = event.touches[0].pageY - event.touches[0].target.offsetTop // Coordonnée Y de la souris dans l'élément
-    console.log(x2);
-    if(isPressed == true && isFilled == false){
-        drawCircle(x2,y2);
-        line(x,y,x2,y2);
-        x=x2;
-        y=y2;
-    }
-});
+
 
 color.addEventListener("click", function(event){
     isFilled = false;
@@ -127,6 +135,10 @@ color.addEventListener("click", function(event){
          size = 1;
      }
      updateSize();
+ });
+
+ pen.addEventListener("click", function(event){
+    isFilled = false;
  });
 
  fill.addEventListener("click" , function(ev){
@@ -279,6 +291,12 @@ function getColorG(ev){
 function getColorB(ev){
     const color = ev.value
     const b = parseInt(color.substr(5,2), 16)
+    return b;
+}
+
+function getColorA(ev){
+    const color = ev.value
+    const b = parseInt(color.substr(7,2), 16)
     return b;
 }
 
