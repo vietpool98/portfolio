@@ -193,14 +193,14 @@ if(isset($_POST["sent"])){
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="firstName" >
+								<input type="text" name="firstName" required>
 								<span class="text">First Name</span>
 								<span class="line"></span>
 							</div>
 						</div>
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="lastName">
+								<input type="text" name="lastName" required>
 								<span class="text">Last Name</span>
 								<span class="line"></span>
 							</div>
@@ -211,14 +211,14 @@ if(isset($_POST["sent"])){
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="email" >
+								<input type="text" name="email" required>
 								<span class="text">Email</span>
 								<span class="line"></span>
 							</div>
 						</div>
 						<div class="col">
 							<div class="inputBox">
-								<input type="text" name="mobile" >
+								<input type="text" name="mobile" required>
 								<span class="text">Mobile</span>
 								<span class="line"></span>
 							</div>
@@ -228,7 +228,7 @@ if(isset($_POST["sent"])){
 					<div class="row">
 						<div class="col">
 							<div class="inputBox">
-								<textarea  name="message"></textarea>
+								<textarea  name="message" required></textarea>
 								<span class="text">type Your Message Here..</span>
 								<span class="line"></span>
 							</div>

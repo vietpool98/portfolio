@@ -52,8 +52,8 @@ window.addEventListener("mousemove" , function(event){
 });
 
 window.addEventListener("touchmove" , function(event){
-    x = event.offsetX; // Coordonnée X de la souris dans l'élément
-     y = event.offsetY;
+    x = event.touches[0].pageX - event.touches[0].target.offsetLeft; // Coordonnée X de la souris dans l'élément
+    y = event.touches[0].pageY - event.touches[0].target.offsetTop;
     
     if(x < 0 || x > canvas.width || y > canvas.height || y < 0){
         isPressed = false;
