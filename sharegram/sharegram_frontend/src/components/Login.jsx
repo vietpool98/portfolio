@@ -65,6 +65,7 @@ const Login = () => {
           <img 
             src={logo} 
             width = "250px"
+            alt="logo"
           />
 
           <div className='shadow-2x1'>
