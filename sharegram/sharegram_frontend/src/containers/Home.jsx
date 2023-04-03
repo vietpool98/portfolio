@@ -34,20 +34,20 @@ const Home = () => {
       <Sidebar user={user && user} />
       </div>
       <div className='flex md:hidden flex-row  '>
-        <div className='w-full flex flex-rox justify-between items-center p-3'>
-        <HiMenu fontSize={35} className='cursor-pointer' onClick={() => setToggleSidebar(true)} />
-        <Link to="/">
-          <img src={logo} alt="logo" className='w-32' />
-        </Link>
-        <Link to={`user-profil/${user?._id}`}>
-          <img src={user?.image} alt="logo" className='w-10 rounded-full ml-2' />
-        </Link>
+        <div className='w-full flex flex-rox justify-between items-center p-3 shadow-md'>
+          <HiMenu fontSize={35} className='cursor-pointer' onClick={() => setToggleSidebar(true)} />
+          <Link to="/">
+            <img src={logo} alt="logo" className='w-32' />
+          </Link>
+          <Link to={`user-profil/${user?._id}`}>
+            <img src={user?.image} alt="logo" className='w-10 rounded-full ml-2' />
+          </Link>
         </div>
         
         {toggleSidebar && (
           <div className="absolute top-0 w-4/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in ">
-            <div className="absolute w-full h-full flex justify-end  p-2 z-0 ">
-              <AiFillCloseCircle fontSize={40} className="cursor-pointer  bg-white " onClick={() => setToggleSidebar(false)} />
+            <div className="absolute w-full h-full flex justify-end  p-2 ">
+              <AiFillCloseCircle fontSize={40} className="cursor-pointer    " onClick={() => setToggleSidebar(false)} />
             </div>
                <Sidebar closeToggle={setToggleSidebar} user={user && user} /> 
               
