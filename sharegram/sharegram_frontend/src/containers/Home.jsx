@@ -20,7 +20,6 @@ const Home = () => {
 
   useEffect( () =>{
     const query = userQuery(userInfo?.data?.sub)
-    
     client.fetch(query)
     .then((data) => {
       console.log(data);
@@ -30,8 +29,8 @@ const Home = () => {
   },[]);
   return (
     <div className=" flex bg-gray-50  md:flex-row flex-col h-screen ease-out transition-height duration-75">
-      <div className='hidden bg-gray-500 md:flex h-screen flex-initial '>
-      <Sidebar user={user && user} />
+      <div className='hidden  md:flex h-screen  flex-initial bg-black '>
+        <Sidebar user={user && user} />
       </div>
       <div className='flex md:hidden flex-row  '>
         <div className='w-full flex flex-rox justify-between items-center p-3 shadow-md'>
@@ -46,8 +45,8 @@ const Home = () => {
         
         {toggleSidebar && (
           <div className="absolute top-0 w-4/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in ">
-            <div className="absolute w-full h-full flex justify-end  p-2 ">
-              <AiFillCloseCircle fontSize={40} className="cursor-pointer    " onClick={() => setToggleSidebar(false)} />
+            <div className="absolute w-full h-full flex justify-end  p-2 z-0 ">
+              <AiFillCloseCircle fontSize={40} className="cursor-pointer  bg-white " onClick={() => setToggleSidebar(false)} />
             </div>
                <Sidebar closeToggle={setToggleSidebar} user={user && user} /> 
               

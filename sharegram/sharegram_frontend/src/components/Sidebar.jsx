@@ -5,10 +5,10 @@ import { IoIosArrowForward } from 'react-icons/io';
 import logo from '../assets/sharegram_logo.png';
 //import { categories } from '../utils/data';
 
-const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500  hover:text-black transition-all duration-200 ease-in-out capitalize';
-const isActiveStyle = 'flex items-center  px-5 gap-3 text-white font-extrabold  rounded-lg bg-gray-500 transition-all duration-200 ease-in-out capitalize ';
+const isNotActiveStyle = 'relative flex right-2 items-center px-7 gap-3 text-gray-500  hover:text-black transition-all duration-400 ease-in-out ';
+const isActiveStyle = 'relative  right-2 overflow-hidden flex items-center  px-7 gap-3 text-white   rounded-lg bg-red-500 transition-all duration-400 ease-in-out  ';
 const categories = [
-  {name:'animals'},
+  {name:'Animals'},
   {name:'Wallpapers'},
   {name:'Photography'},
   {name:'Gaming'},
@@ -21,8 +21,8 @@ const Sidebar = ( {closeToggle,user}) => {
   } 
 
   return (
-    <div className='flex flex-row h-full bg-white hide-scrollbar min-w-210 overflow-y-scroll '>
-      <div className='absolute flex flex-col    '>
+    <div className='flex flex-col h-full bg-white hide-scrollbar min-w-230 overflow-y-scroll '>
+      <div className='absolute flex flex-col '>
         <Link
           to="/"
           className='flex  px-5  my-6 pt-1 w-190 items-center  gap-2 '
@@ -32,7 +32,7 @@ const Sidebar = ( {closeToggle,user}) => {
         </Link>
         
 
-        <div className='flex flex-col gap-5 w-full '>
+        <div className='flex flex-col gap-5 w-full mt-4 '>
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
@@ -55,13 +55,14 @@ const Sidebar = ( {closeToggle,user}) => {
                 {category.name}
               </NavLink>
             ))}
+
             { user && (
               <NavLink
               toto={`/user-profil/${user._id}`}
-              className="fixed bottom-0 gap-2 mx-1 mb-2 items-center bg-white rounded-lg shadow-lg  flex flex-row"
+              className="fixed bottom-0 gap-2 mx-1 mb-2 text-xs p-2 items-center justify-center bg-white rounded-lg shadow-lg  flex flex-row"
               onClick={()=> handleCloseSideBar()}
               >
-                <img src={user?.image} alt="logo" className='w-8 rounded-full ml-2' />
+                <img src={user?.image} alt="logo" className='w-7 rounded-full ml-2' />
                 {user.userName}
               </NavLink>
             ) }
