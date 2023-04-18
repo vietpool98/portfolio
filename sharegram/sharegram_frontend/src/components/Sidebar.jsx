@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, Routes, Route, NavLink } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 import logo from '../assets/sharegram_logo.png';
@@ -51,6 +52,7 @@ const Sidebar = ( {closeToggle,user}) => {
                 to={`/category/${category.name}`}
                 className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
                 onClick={()=> handleCloseSideBar()}
+                key = {uuidv4()}
               >
                 {category.name}
               </NavLink>
