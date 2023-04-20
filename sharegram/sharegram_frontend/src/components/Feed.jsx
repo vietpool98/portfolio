@@ -33,7 +33,7 @@ const Feed = () => {
         const query = feedQuery
         client.fetch(query)
         .then((data) => {
-          
+          {console.log(data[0].save)}
           setPins(data);
           
           setLoading(false);

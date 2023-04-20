@@ -20,4 +20,11 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
+
+  parts: 
+    {
+      implements: "part:@sanity/base/absolutes",
+      path: "./bundleChecker.js",
+    },
+  
 })
