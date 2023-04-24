@@ -5,25 +5,23 @@ import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdCategory, MdDelete } from "react-icons/md";
 import { client, urlFor } from '../client';
 import { categories } from '../utils/data';
+import { AiTwotoneDelete } from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
 
-const CreatePin = () => {
+const CreatePin = ({user}) => {
 
    const navigate = useNavigate();
    const [imagesAssets, setImagesAssets] = useState(null);
    const [wrongTypeofImage, setWrongTypeofImage] = useState(false);
-   const [setField] = useState();
-
+   const [field, setField] = useState(true);
+   const [onImageHover, setOnImageHover] = useState(false);
    const [imageTitle, setImageTitle] = useState(null);
    const [imageAbout, setImageAbout] = useState(null);
    const [imageDestination, setImageDestination] = useState(null);
    const [imageCategory, setImageCategory] = useState();
-   let yo;
+   
 
-   useEffect(() => {
-    // Should show updated state -
-    console.log(imageCategory);
-    }, [imageCategory])
+   
 
    const uploadImage = (e) => {
        const selectedImage = e.target.files[0];
@@ -50,11 +48,36 @@ const CreatePin = () => {
          }
      }
 
-   const saveImage = (e) => {
+   const saveImage = (imageAbout,imageCategory,imageDestination,imageTitle,imagesAssets) => {
+    if(imageAbout && imageCategory && imageDestination && imageTitle && imagesAssets){
+      setField(true)
+      const doc = {
+        _type : "pin",
+        title: imageTitle,
+        about: imageAbout,
+        destination : imageDestination,
+        image: {
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: imagesAssets?._id,
+          },
+        },
+        userID : user._id,
+        postedBy: {
+          _type: 'postedBy',
+          _ref: user._id,
+        },
+        category : imageCategory
+      }
 
-    const doc = {
-      
+      client.create(doc)
+        .then(() => navigate("/"));
     }
+    else{
+      setField(false)
+    }
+    
    }
   
   return(
@@ -66,7 +89,7 @@ const CreatePin = () => {
                   {!wrongTypeofImage ? 
                   (<label 
                     for="upload-image"
-                    onClick={()=> uploadImage}
+                    onClick={()=> uploadImage}    
                     className="w-full h-full justify-center items-center rounded-lg flex flex-col cursor-pointer">
                     <AiOutlineCloudUpload fontSize={30} className=''/>
                     
@@ -85,7 +108,7 @@ const CreatePin = () => {
 
                           <h1 className="text-center text-red-500 text-sm m-2">image type not correct, only allowed svg png or jpeg type</h1>
                           <button 
-                            onClick={()=>window.location.reload()}
+                            onClick={()=>setWrongTypeofImage(false)}
                             className="relative  bg-red-400 p-1 rounded-full shadow-md text-white capitalize"
                             >retry</button>
                       </div>
@@ -94,15 +117,30 @@ const CreatePin = () => {
                 </div>)
               :( 
 
-              <div className=" h-full w-1/2  flex justify-center  items-center flex-col m-1">
-
+              <div 
+                onMouseEnter={()=> setOnImageHover(true)}
+                onMouseLeave={()=> setOnImageHover(false)}
+                className=" h-full w-1/2   flex justify-center  items-center flex-col m-1"
+              >
+                
+                <div className=" relative h-2/3 bg-red-500">
                   <img
                     src={imagesAssets.url}
-                    className="object-cover rounded-md h-2/3"
+                    className=" object-cover h-full rounded-md "
                   />
+                  {onImageHover &&
+                    <button 
+                    className="absolute flex items-center justify-center left-0 top-0 bg-white m-1 p-1 rounded-full opacity-60 hover:opacity-100"
+                    onClick={()=>setImagesAssets(null)}
+                    >
+                      <AiTwotoneDelete fontSize={20} className=''/>
+                    </button>
+                  }
+                </div>
+                  
                   <button
                   className=" relative top-3 bg-red-400 p-3 rounded-full shadow-md text-white capitalize"
-                  onClick={(e) => saveImage(e)}
+                  onClick={() => saveImage(imageAbout,imageCategory,imageDestination,imageTitle,imagesAssets)}
                   >
                     publish
                   </button>
@@ -110,11 +148,9 @@ const CreatePin = () => {
             )}
           </div>
           <form className="relative w-350 ">
-              <input type="text" placeholder="tape your title here"  onChange={(e)=> {setImageTitle(e.target.value)}} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
-              <input type="text" placeholder="what's your pin about" onChange={(e)=> setImageAbout(e.target.value)} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
-              <input type="text" placeholder="add a link (optional)"  onChange={(e)=> setImageDestination(e.target.value)} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
-
-              
+              <input type="text" placeholder="Tape your title here"  onChange={(e)=> {setImageTitle(e.target.value)}} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
+              <input type="text" placeholder="What's your pin about" onChange={(e)=> setImageAbout(e.target.value)} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
+              <input type="text" placeholder="Add a link (optional)"  onChange={(e)=> setImageDestination(e.target.value)} className="relative top-5 outline-none text-base sm:text-lg border-2 border-gray-200 p-2 w-full"/>
 
                <select  
                   onChange={(e) => {
@@ -127,10 +163,15 @@ const CreatePin = () => {
                       <option   value={category.name}>{category.name}
                       </option>
                   ))}
-                  
-                 
               </select> 
-              
+
+               {!field &&
+                <div className="relative top-10 p-2 w-full text-red-500 text-center border-2 border-red-500 bg-red-200 items-center justify-center flex rounded-lg">
+                  <span>
+                     All the fields are required, we can't publish your image yet.
+                  </span>
+                </div>
+               }
             </form>
         </div>
   );

@@ -15,8 +15,7 @@ return(
   <div>
     <Masonry
     breakpointCols={breakpointColumnsObj}
-    className="my-masonry-grid"
-    columnClassName="my-masonry-grid_column"
+    className="flex"
   >
     
     {pins?.map((pin)=> <Pin pin={pin} key = {pin._id} />)}
@@ -25,6 +24,7 @@ return(
 
   
   </div>
+  
 )
   
   

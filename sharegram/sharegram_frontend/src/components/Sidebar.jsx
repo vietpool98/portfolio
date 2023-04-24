@@ -4,17 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 import logo from '../assets/sharegram_logo.png';
-//import { categories } from '../utils/data';
+import { categories } from '../utils/data';
+
 
 const isNotActiveStyle = 'relative flex right-2 items-center px-7 gap-3 text-gray-500  hover:text-black transition-all duration-400 ease-in-out ';
 const isActiveStyle = 'relative  right-2 overflow-hidden flex items-center  px-7 gap-3 text-white   rounded-lg bg-red-500 transition-all duration-400 ease-in-out  ';
-const categories = [
-  {name:'Animals'},
-  {name:'Wallpapers'},
-  {name:'Photography'},
-  {name:'Gaming'},
-  {name:'Coding'},
-]
+
 const Sidebar = ( {closeToggle,user}) => {
 
   const handleCloseSideBar = () => {
@@ -48,14 +43,21 @@ const Sidebar = ( {closeToggle,user}) => {
             
             
             {categories.slice(0,categories.length-1).map((category)=> (
-              <NavLink
+
+              
+                
+                <NavLink
                 to={`/category/${category.name}`}
                 className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
                 onClick={()=> handleCloseSideBar()}
                 key = {uuidv4()}
-              >
-                {category.name}
-              </NavLink>
+                >
+                  <img src={category.image} alt="category-image" className=' w-7 h-7 object-cover rounded-full  ' />
+                  {category.name}
+                </NavLink>
+
+              
+              
             ))}
 
             { user && (
