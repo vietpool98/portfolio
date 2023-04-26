@@ -73,7 +73,7 @@ export const updateSave = (id) => {
 }
 
 export const searchTerms = (search) => {
-    const query = `*[_type == 'pin' && Title match '${search}' || About match '${search}' ||Category match '${search}' 
+    const query = `*[_type == 'pin' && title match '${search}' || about match '${search}' ||category match '${search}'] 
                         {
                             image{
                                 asset->{
@@ -83,6 +83,8 @@ export const searchTerms = (search) => {
 
                             _id,
                             destination,
+                            title,
+                            about,
                             postedBy->{
                             _id,
                             userName,
@@ -97,7 +99,7 @@ export const searchTerms = (search) => {
                                 image
                             },
                             },
-                        }]`
+                        }`
 
     return query;
 }
@@ -110,6 +112,8 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
       },
       _id,
       destination,
+      title,
+      about,
       postedBy->{
         _id,
         userName,

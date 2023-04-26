@@ -82,7 +82,7 @@ const CreatePin = ({user}) => {
   
   return(
         <div className="flex flex-col relative h-full w-full   items-center ">
-          <div className="w-656  h-2/5  bg-gray-100 flex flex-col justify-center items-center rounded-lg border-gray-200  border-2 shadow-md text-sm">
+          <div className=" lg:w-656 w-350  h-2/5  bg-gray-100 flex flex-col justify-center items-center rounded-lg border-gray-200  border-2 shadow-md text-sm">
             {!imagesAssets ?
               (
                 <div className="w-1/3 h-1/3 justify-center items-center rounded-lg flex flex-col border-gray-300 border-2 border-dashed cursor-pointer">
@@ -90,18 +90,18 @@ const CreatePin = ({user}) => {
                   (<label 
                     for="upload-image"
                     onClick={()=> uploadImage}    
-                    className="w-full h-full justify-center items-center rounded-lg flex flex-col cursor-pointer">
+                    className="w-full h-full justify-center items-center text-center rounded-lg flex flex-col cursor-pointer">
                     <AiOutlineCloudUpload fontSize={30} className=''/>
                     
-                    <input
-                        type="file"
-                        placeholder="hello"
-                        name="upload-image"
-                        id="upload-image"
-                        onChange={(e)=>uploadImage(e)}
-                        className="w-0 h-0 "
-                      />
-                      <span> upload your image</span>
+                      <input
+                          type="file"
+                          placeholder="hello"
+                          name="upload-image"
+                          id="upload-image"
+                          onChange={(e)=>uploadImage(e)}
+                          className="w-0 h-0 "
+                        />
+                        <span> upload your image</span>
                     </label>)
                     : (
                       <div className="flex items-center justify-center flex-col">

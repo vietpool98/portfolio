@@ -39,7 +39,7 @@ const Home = () => {
             <img src={logo} alt="logo" className='w-32' />
           </Link>
           <Link to={`user-profil/${user?._id}`}>
-            <img src={user?.image} alt="logo" className='w-10 rounded-full ml-2' />
+            <img src={user?.image} alt="logo" referrerPolicy="no-referrer" className='w-10 rounded-full ml-2' />
           </Link>
         </div>
         
