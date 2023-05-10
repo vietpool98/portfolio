@@ -50,6 +50,7 @@ module.exports = {
         mainColor: '#FBF8F9',
         secondaryColor: '#F0F0F0',
         blackOverlay: 'rgba(0, 0 ,0 ,0.71)',
+        blackOverlayPin: 'rgba(0, 0 ,0 ,0.51)',
       },
       keyframes: {
         'slide-in': {

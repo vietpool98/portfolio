@@ -9,6 +9,7 @@ import { client, urlFor } from '../client';
 
 import { MdFavorite } from 'react-icons/md';
 import { saveAs } from 'file-saver'
+import { pinDetailQuery } from '../utils/data';
 
 
 const Pin = ({pin}) => {
@@ -20,23 +21,15 @@ const Pin = ({pin}) => {
  const navigate = useNavigate();
  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
  const location = useLocation();
- let alreadySaved =  pin.save?.filter((name) => name.postedBy._id == userInfo.data.sub);
- alreadySaved = alreadySaved?.length > 0 ? alreadySaved :  [];
+ const [alreadySaved, setAlreadySaved] = useState([]);
+ 
  
 
+
  const [numberlike, setNumberlike] = useState(pin.save?.length);
- const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
- function handleClick() {
-     forceUpdate();
- }
+ 
   
-  useEffect( () =>{
-    console.log("hello")
-    
-  },[ignored]);
-
   
-
    function pinDelete (id){
     client.delete({
               query : `*[_type == "pin" && _id == '${id}']`
@@ -50,41 +43,43 @@ const Pin = ({pin}) => {
     saveAs(imgUrl, `${imgName}.jpg`) // Put your image url here.
   }
 
-  
+  const fetchSaveData = () => {
+    const query = pinDetailQuery(pin._id)
+           client.fetch(query)
+           .then((data) => {
+              setNumberlike(data[0].save.length)
+              setAlreadySaved (data[0].save.filter((name) => name.postedBy._id == userInfo.data.sub))
+               console.log (alreadySaved)
+            
+           })
+  }
+
+  useEffect(() => {
+    setAlreadySaved(pin.save?.filter((name) => name.postedBy._id == userInfo.data.sub) ? pin.save?.filter((name) => name.postedBy._id == userInfo.data.sub) : [])
+  },[]);
   
  
    function savePin (id) {
-    if (alreadySaved?.length === 0) {
-      setSavingPost(true);
+      if (alreadySaved?.length === 0) {
+        setSavingPost(true);
 
-      client
-        .patch(id)
-        .setIfMissing({ save: [] })
-        .insert('after', 'save[-1]', [{
-          _key: uuidv4(),
-          userId: userInfo?.data.sub,
-          postedBy: {
-            _type: 'postedBy',
-            _ref: userInfo?.data.sub,
-          },
-        }])
-        .commit()
-        .then(() => {
-          window.location.reload()
-          // const query = updateSave(id)
-          // client.fetch(query)
-          // .then((data) => {
-          //   // setNumberlike(data[0].save.length)
-          //   // handleClick();
-            
-            
-          // })
-        })
-
-        
+        client
+          .patch(id)
+          .setIfMissing({ save: [] })
+          .insert('after', 'save[-1]', [{
+            _key: uuidv4(),
+            userId: userInfo?.data.sub,
+            postedBy: {
+              _type: 'postedBy',
+              _ref: userInfo?.data.sub,
+            },
+          }])
+          .commit()
+          .then(() => {
+            fetchSaveData()
+          })
+      }
     }
-  
-};
  
   return (
     

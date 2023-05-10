@@ -78,9 +78,10 @@ const PinDetail = ({user}) => {
 
         <div className='flex justify-center w-full h-2/3 relative '>
           <div className='w-508 h-full relative'>
-            <img src={pins && urlFor(pins.image)} className='object-cover w-508 h-full rounded-lg'/> 
+            <img src={pins && urlFor(pins.image)} className='object-cover w-508 h-full rounded-t-lg'/> 
 
-            <div className='absolute p-2 justify-center bottom-0 left-0 flex flex-row items-center gap-2 text-sm text-white opacity-50'>
+            <div className=' absolute w-full h-full hover:bg-blackOverlayPin top-0 rounded-t-lg transition duration-250 ease-in-out'></div>
+            <div className='absolute  p-2 justify-center bottom-0 left-0 flex flex-row items-center gap-2 text-sm text-white opacity-85 '>
                 <img src={pins?.postedBy.image} alt="image"  className='w-8 rounded-full mt-1 opacity-75 '/> 
                 <span>{pins?.postedBy?.userName}</span>
             </div>
@@ -88,7 +89,7 @@ const PinDetail = ({user}) => {
         </div>
 
         <div className='flex justify-center w-full relative '>
-          <div className='flex items-center w-508 p-4 bg-white rounded-lg justify-between flex-row '>
+          <div className='flex items-center w-508 p-2 bg-white rounded-b-lg border-b-2 justify-between flex-row shadow-lg '>
             <button 
               
               onClick={(e)=>{e.stopPropagation();
@@ -111,14 +112,14 @@ const PinDetail = ({user}) => {
           </div>
         </div>
 
-        <div className='flex justify-center w-full relative  '>
-          <div className='flex items-center w-508 p-2 justify-between text-4xl font-bold'>
+        <div className='flex justify-center w-full relative mt-5 '>
+          <div className='flex items-center w-508 p-2 justify-between text-4xl font-bold border-b-2 border-t-2'>
               <h2>{pins?.title}</h2>
           </div>
         </div>
 
         <div className='flex justify-center w-full relative  '>
-          <div className='flex items-center w-508 p-2 justify-between '>
+          <div className='flex items-center w-508 p-2 justify-between border-b-2 '>
               <h2>{pins?.about}</h2>
           </div>
         </div>
@@ -126,7 +127,7 @@ const PinDetail = ({user}) => {
        
 
         <div className='flex justify-center w-full relative  '>
-          <div className='flex items-center w-508 p-2 justify-between text-2xl  text-bold'>
+          <div className='flex items-center w-508 p-2 justify-between text-2xl  font-bold text-red-400'>
               <span>Comments</span>
           </div>
         </div>

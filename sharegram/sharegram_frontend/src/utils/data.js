@@ -56,11 +56,11 @@ export const userQuery = (userId) => {
     return query;
 }
 
-export const findPinId = (id) => {
+// export const findPinId = (id) => {
   
-  const query = `*[_type == 'pin' && _id == '${id}']`
-    return query;
-}
+//   const query = `*[_type == 'pin' && _id == '${id}']`
+//     return query;
+// }
 
 export const pinDetailQuery = (pinId) => {
   const query = `*[_type == "pin" && _id == '${pinId}']{
