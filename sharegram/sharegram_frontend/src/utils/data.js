@@ -56,21 +56,48 @@ export const userQuery = (userId) => {
     return query;
 }
 
-export const updateSave = (id) => {
-  // const query = `*[_type == 'pin' && _id == '${id}'{
-  //                     save[]{
-  //                       _key,
-  //                       postedBy->{
-  //                           _id,
-  //                           userName,
-  //                           image
-  //                       },
-  //                   }
-  //                 ]`
-
+export const findPinId = (id) => {
+  
   const query = `*[_type == 'pin' && _id == '${id}']`
     return query;
 }
+
+export const pinDetailQuery = (pinId) => {
+  const query = `*[_type == "pin" && _id == '${pinId}']{
+    image{
+      asset->{
+        url
+      }
+    },
+    _id,
+    title, 
+    about,
+    category,
+    destination,
+    postedBy->{
+      _id,
+      userName,
+      image
+    },
+   save[]{
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+    },
+    comments[]{
+      comment,
+      _key,
+      postedBy->{
+        _id,
+        userName,
+        image
+      },
+    }
+  }`;
+  return query;
+};
 
 export const searchTerms = (search) => {
     const query = `*[_type == 'pin' && title match '${search}' || about match '${search}' ||category match '${search}'] 

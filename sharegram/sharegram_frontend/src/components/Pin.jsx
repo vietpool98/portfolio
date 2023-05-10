@@ -6,7 +6,7 @@ import { MdDownloadForOffline } from 'react-icons/md';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 import { client, urlFor } from '../client';
-import { updateSave } from '../utils/data';
+
 import { MdFavorite } from 'react-icons/md';
 import { saveAs } from 'file-saver'
 
@@ -70,15 +70,15 @@ const Pin = ({pin}) => {
         }])
         .commit()
         .then(() => {
-          
-          const query = updateSave(id)
-          client.fetch(query)
-          .then((data) => {
-            // setNumberlike(data[0].save.length)
-            // handleClick();
-            window.location.reload()
+          window.location.reload()
+          // const query = updateSave(id)
+          // client.fetch(query)
+          // .then((data) => {
+          //   // setNumberlike(data[0].save.length)
+          //   // handleClick();
             
-          })
+            
+          // })
         })
 
         
@@ -159,7 +159,7 @@ const Pin = ({pin}) => {
         
       </div>
       <div className='flex flex-row items-center gap-2 text-sm'>
-        {console.log("rerender")}
+        
         <img src={pin.postedBy.image} alt="image"  className='w-8 rounded-full mt-1 '/> 
         <span>{pin.postedBy?.userName}</span>
       </div>
