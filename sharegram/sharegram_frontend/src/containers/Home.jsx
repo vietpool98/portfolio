@@ -44,11 +44,15 @@ const Home = () => {
         </div>
         
         {toggleSidebar && (
-          <div className="absolute top-0 w-4/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in ">
-            <div className="absolute w-full h-full flex justify-end  p-2 z-0 ">
-              <AiFillCloseCircle fontSize={40} className="cursor-pointer  bg-white " onClick={() => setToggleSidebar(false)} />
+          <div className="absolute top-0 w-3/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in z-10">
+            <div className="absolute w-full h-full flex justify-between   z-20 ">
+              
+              <Sidebar closeToggle={setToggleSidebar} user={user && user} /> 
+              <div className='p-2'>
+                <AiFillCloseCircle fontSize={40} className="cursor-pointer  bg-white " onClick={() => setToggleSidebar(false)} />
+              </div>
             </div>
-               <Sidebar closeToggle={setToggleSidebar} user={user && user} /> 
+               
               
           </div>
         )

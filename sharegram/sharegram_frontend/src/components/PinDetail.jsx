@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { useParams,Link} from 'react-router-dom';
 import { categories } from '../utils/data';
 import { v4 as uuidv4 } from 'uuid';
-import { pinDetailQuery } from '../utils/data';
+import { pinDetailQuery,searchSimilarCategory } from '../utils/data';
 import { client, urlFor } from '../client';
 import Spinner from './Spinner';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { saveAs } from 'file-saver'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
+import MasonryLayout from './MasonryLayout';
 
 
 const PinDetail = ({user}) => {
@@ -18,6 +19,12 @@ const PinDetail = ({user}) => {
   const[loading, setLoading] = useState(false);
   const[comment, setComment] = useState('')
   const[addComment, setAddComment] = useState(true)
+
+  const {categoryId} = useParams()
+  const[loadingbis, setLoadingBis] = useState(false);
+  const[pinsBis, setPinsBis] = useState();
+
+ 
   
 
   const downloadImage = (imgUrl, imgName) => {
@@ -30,9 +37,19 @@ const PinDetail = ({user}) => {
       const query = pinDetailQuery(pinId)
       client.fetch(query)
       .then((data) => {
-        
         setPins(data[0]);
         setLoading(false)
+
+            const query = searchSimilarCategory(data[0]?.category)
+            client.fetch(query)
+            .then((data) => {
+              setPinsBis(data);
+              setLoadingBis(false);
+              console.log(pinsBis)
+            })
+            .catch((err) =>{
+              console.log(err)
+            })
       })
       .catch((err) =>{
         console.log(err)
@@ -41,14 +58,10 @@ const PinDetail = ({user}) => {
   }
 
   useEffect(() => {
-
     fetchingPinData();
-
   }, [pinId]);
     
   function senComment (id){
-    
-
       client
         .patch(id)
         .setIfMissing({ comments: [] })
@@ -65,9 +78,6 @@ const PinDetail = ({user}) => {
           fetchingPinData();
           
         })
-
-        
-    
   
   }
  
@@ -176,6 +186,16 @@ const PinDetail = ({user}) => {
             </button>
           </div>
         </div>
+
+        <div className='flex w-full relative justify-center  mt-20  '>
+          <h2 className='font-bold text-4xl text-red-400 border-b-2 border-red-400'>
+            Similar media
+          </h2>
+        </div>  
+        <div className='mt-5'>
+            {pins && (<MasonryLayout pins={pinsBis}/>)}
+        </div>     
+
       </div>
     )
   }

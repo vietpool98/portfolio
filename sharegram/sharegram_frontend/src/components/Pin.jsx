@@ -83,7 +83,7 @@ const Pin = ({pin}) => {
  
   return (
     
-    <div className='m-2 '>
+    <div className='relative m-2 z-0 '>
       
       <div
         onMouseEnter={()=> {setOnImageHover(true);
@@ -109,7 +109,7 @@ const Pin = ({pin}) => {
 
             {alreadySaved?.length > 0 ?
               (<button
-                className='absolute gap-2 flex flex-row items-center justify-center top-0 right-0  bg-red-500 m-2 p-1 rounded-full opacity-60 hover:opacity-100'
+                className='absolute gap-1 flex flex-row items-center justify-center top-0 right-0  bg-red-500 m-2 p-1 rounded-full opacity-60 hover:opacity-100'
                 onClick={(e) => e.stopPropagation()}
               >
                 <span className='text-white'>{numberlike} </span>
@@ -117,12 +117,12 @@ const Pin = ({pin}) => {
               </button>)
               :(
               <button
-               className='absolute gap-2 flex flex-row items-center justify-center top-0 right-0  bg-red-500 m-2 p-1 rounded-full opacity-60 hover:opacity-100'
+               className='absolute gap-1 flex flex-row items-center justify-center top-0 right-0  bg-red-500 m-2 p-1 rounded-full opacity-60 hover:opacity-100'
                onClick={(e) => {e.stopPropagation();
                                 savePin(pin._id);
                                }}
               >
-                <span >{numberlike} </span>
+                {  numberlike > 0 && <span >{numberlike} </span>}
                 <MdFavorite fontSize={20}  className=''/>
               </button>
               )}

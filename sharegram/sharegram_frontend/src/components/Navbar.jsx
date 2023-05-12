@@ -6,13 +6,16 @@ import CreatePin from './CreatePin';
 const Navbar = ({searchTerm, setSearchTerm, user}) => {
 
   const navigate = useNavigate();
+  const [itemSearch, setItemSearch] = useState(''); 
   
   if(!user){return null}
    return (
     <div className='flex w-full  pt-5 pb-5 items-center justify-between'>
       <div className='flex  flex-row items-center justify-center w-3/4  rounded-md mx-5'>
         
-        <IoMdSearch fontSize={21}/>
+          <IoMdSearch fontSize={21}/>
+        
+        
         <input
           type="text"
           placeholder='Search'
