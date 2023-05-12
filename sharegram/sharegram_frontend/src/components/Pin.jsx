@@ -93,7 +93,7 @@ const Pin = ({pin}) => {
         className='relative  w-auto h-auto cursor-zoom-in hover:shadow-lg rounded-lg '
       >
         <img src={image.asset.url} alt="image" className='rounded-lg w-full'/> 
-
+        <div className=' absolute w-full h-full hover:bg-blackOverlayPin top-0 rounded-t-lg transition duration-250 ease-in-out'></div>
         {onImageHover && 
           <div> 
             <button 
