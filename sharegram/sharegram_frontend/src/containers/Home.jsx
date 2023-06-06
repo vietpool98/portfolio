@@ -44,7 +44,7 @@ const Home = () => {
         </div>
         
         {toggleSidebar && (
-          <div className="absolute top-0 w-3/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in z-10">
+          <div className="absolute top-0 w-4/5 bg-white h-screen  overflow-y-auto shadow-md  animate-slide-in z-10">
             <div className="absolute w-full h-full flex justify-between   z-20 ">
               
               <Sidebar closeToggle={setToggleSidebar} user={user && user} /> 

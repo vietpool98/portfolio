@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 import { GoogleLogin } from '@react-oauth/google';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -8,9 +8,14 @@ import shareVideo from '../assets/sharegram_video.mp4';
 import logo from '../assets/sharegram_white.png';
 import axios from "axios"
 import {client} from '../client.js'
+import React, {useRef, useEffect} from "react"
 
 
 const Login = () => {
+  const videoRef = useRef(undefined);
+    useEffect(() => {
+        videoRef.current.defaultMuted = true;
+    })
   const navigate = useNavigate();
   const loginGoogle = useGoogleLogin
   ({
