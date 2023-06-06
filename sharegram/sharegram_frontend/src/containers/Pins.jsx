@@ -12,7 +12,7 @@ const Pins = ({user}) => {
         <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user && user}/>
       </div>
     
-      <div className=' '>
+      <div className=' h-full '>
         <Routes>
            <Route path="/" element={<Feed />} />
             <Route path="/category/:categoryId" element={<Feed />} /> 
