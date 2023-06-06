@@ -48,7 +48,7 @@ const Feed = () => {
     if(loading) return <Spinner message="We are adding some new content in your feed"/>
     return (
       <div>
-        {console.log(pins)}
+       
         {pins && (<MasonryLayout pins={pins}/>)}
       </div>
     )

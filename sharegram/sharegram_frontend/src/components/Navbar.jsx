@@ -26,7 +26,7 @@ const Navbar = ({searchTerm, setSearchTerm, user}) => {
         />
       </div>
       <div className='hidden md:flex mr-5 flex-row  pr-5 pl-5 items-center  gap-5'>
-        <Link to={`user-profil/${user?._id}`}>
+        <Link to={`/user-profil/${user?._id}`}>
             <img src={user?.image} alt="logo"  className='w-14 rounded-full ' />
         </Link>
         <Link to="/create-pin" className="bg-black text-white rounded-lg w-10 h-12 flex justify-center items-center">

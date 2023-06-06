@@ -193,4 +193,67 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
       },
     } `;
 
+    export const searchPinSaved = (userId) => {
+      const query = `*[_type == 'pin' &&  '${userId}' in save[].userId ]
+                          {
+                              image{
+                                  asset->{
+                                    url
+                                  }
+                                },
+    
+                              _id,
+                              destination,
+                              title,
+                              about,
+                              postedBy->{
+                              _id,
+                              userName,
+                              image
+                              },
+    
+                              save[]{
+                              _key,
+                              postedBy->{
+                                  _id,
+                                  userName,
+                                  image
+                              },
+                              },
+                          }`
+    
+      return query;
+    }
+
+    export const searchPinCreated = (userId) => {
+      const query = `*[_type == 'pin' &&  '${userId}' match userID]
+                          {
+                              image{
+                                  asset->{
+                                    url
+                                  }
+                                },
+    
+                              _id,
+                              destination,
+                              title,
+                              about,
+                              postedBy->{
+                              _id,
+                              userName,
+                              image
+                              },
+    
+                              save[]{
+                              _key,
+                              postedBy->{
+                                  _id,
+                                  userName,
+                                  image
+                              },
+                              },
+                          }`
+    
+      return query;
+    }
     

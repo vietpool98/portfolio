@@ -81,7 +81,7 @@ const CreatePin = ({user}) => {
    }
   
   return(
-        <div className="flex flex-col relative h-full w-full   items-center ">
+        <div className="flex flex-col  h-full w-full   items-center ">
           <div className=" lg:w-656 w-350  h-2/5  bg-gray-100 flex flex-col justify-center items-center rounded-lg border-gray-200  border-2 shadow-md text-sm">
             {!imagesAssets ?
               (

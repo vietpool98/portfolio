@@ -188,7 +188,7 @@ const PinDetail = ({user}) => {
         </div>
 
         <div className='flex w-full relative justify-center  mt-20  '>
-          <h2 className='font-bold text-4xl text-red-400 border-b-2 border-red-400'>
+          <h2 className='font-bold text-4xl  '>
             Similar media
           </h2>
         </div>  
