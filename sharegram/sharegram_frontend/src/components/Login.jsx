@@ -12,10 +12,7 @@ import React, {useRef, useEffect} from "react"
 
 
 const Login = () => {
-  const videoRef = useRef(undefined);
-    useEffect(() => {
-        videoRef.current.defaultMuted = true;
-    })
+  
   const navigate = useNavigate();
   const loginGoogle = useGoogleLogin
   ({
